@@ -5,10 +5,14 @@ import { User } from 'src/user/entities/user.entity'
 import { AuthController } from './auth.controller'
 import { AuthService } from './auth.service'
 import { LocalStrategy } from './strategy/local.strategy'
-import { UserService } from 'src/user/user.service'
+import { UserModule } from 'src/user/user.module'
 
 @Module({
-  imports: [TypeOrmModule.forFeature([User]), JwtModule.register({}), UserService],
+  imports: [
+    TypeOrmModule.forFeature([User]),
+    JwtModule.register({}),
+    UserModule,
+  ],
   controllers: [AuthController],
   providers: [AuthService, LocalStrategy],
   exports: [AuthService, JwtModule],
