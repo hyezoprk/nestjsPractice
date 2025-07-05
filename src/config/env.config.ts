@@ -37,5 +37,8 @@ export const databaseEnvConfig: TypeOrmModuleAsyncOptions = {
     entities: [Movie, MovieDetail, Director, Genre, User, MovieUserLike],
     // TODO: 프로덕션에서 사용하는 경우 false로 반드시 변경
     synchronize: true,
+    ssl: {
+      rejectUnauthorized: false
+    }
   }),
 }
