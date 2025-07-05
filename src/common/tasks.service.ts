@@ -1,4 +1,4 @@
-import { Inject, Injectable, LoggerService } from '@nestjs/common'
+import { Inject, Injectable, type LoggerService } from '@nestjs/common'
 import { Cron, SchedulerRegistry } from '@nestjs/schedule'
 import { InjectRepository } from '@nestjs/typeorm'
 import { readdir, unlink } from 'fs/promises'

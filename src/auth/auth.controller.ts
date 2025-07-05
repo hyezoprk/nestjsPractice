@@ -10,7 +10,7 @@ import {
 } from '@nestjs/common'
 import { AuthService } from './auth.service'
 import { Public } from './decorator/public.decorator'
-import { RequestWithUser } from './middleware/bearer-token.middleware'
+import { type RequestWithUser } from './middleware/bearer-token.middleware'
 import { LocalAuthGuard } from './strategy/local.strategy'
 import { ApiBasicAuth, ApiBearerAuth } from '@nestjs/swagger'
 import { Authorization } from './decorator/auth.decorator'
