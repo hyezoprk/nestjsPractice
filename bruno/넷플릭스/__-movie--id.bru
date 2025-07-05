@@ -1,0 +1,15 @@
+meta {
+  name: __/movie/:id
+  type: http
+  seq: 7
+}
+
+put {
+  url: {{host}}/movie/:id
+  body: none
+  auth: inherit
+}
+
+params:path {
+  id: 
+}
