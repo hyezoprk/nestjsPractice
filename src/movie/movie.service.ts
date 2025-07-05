@@ -57,6 +57,7 @@ export class MovieService {
     if (genres.length !== genreIds.length)
       throw new NotFoundException('해당하는 장르를 찾을 수 없습니다.')
 
+    console.log(qr)
     const movieDetail = await qr.manager
       .createQueryBuilder()
       .insert()

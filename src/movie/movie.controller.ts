@@ -26,10 +26,7 @@ import { CacheKey, CacheInterceptor as CI } from '@nestjs/cache-manager'
 import { Throttle } from 'src/common/decorator/throttle.decorator'
 import { ApiBearerAuth, ApiOperation, ApiResponse } from '@nestjs/swagger'
 
-@Controller({
-  path: 'movie',
-  version: '1'
-})
+@Controller('movie')
 @ApiBearerAuth()
 @UseInterceptors(ClassSerializerInterceptor)
 export class MovieController {
@@ -75,6 +72,7 @@ export class MovieController {
     @UserId() userId: number,
     @QR() qr: QueryRunner,
   ) {
+    console.log("???")
     return this.movieService.createMovie(createMovieDto, userId, qr)
   }
 

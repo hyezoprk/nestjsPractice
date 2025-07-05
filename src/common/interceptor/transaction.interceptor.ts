@@ -5,12 +5,12 @@ import {
   InternalServerErrorException,
   NestInterceptor,
 } from '@nestjs/common'
-import { catchError, finalize, Observable, tap } from 'rxjs'
+import { catchError, Observable, tap } from 'rxjs'
 import { DataSource } from 'typeorm'
 
 @Injectable()
 export class TransactionInterceptor implements NestInterceptor {
-  constructor(private readonly dataSource: DataSource) {}
+  constructor(private readonly dataSource: DataSource) { }
 
   async intercept(
     context: ExecutionContext,
@@ -27,19 +27,18 @@ export class TransactionInterceptor implements NestInterceptor {
     return next.handle().pipe(
       tap(async () => {
         await qr.commitTransaction()
+        await qr.release()
       }),
       catchError(async (e) => {
         try {
           await qr.rollbackTransaction()
+          await qr.release()
         } catch (rollbackError) {
-          console.error('Rollback Error:', rollbackError)
+          console.error('Rollback/Release Error:', rollbackError)
         }
         throw new InternalServerErrorException(
           `Transaction failed: ${e.message}`,
         )
-      }),
-      finalize(async () => {
-        await qr.release()
       }),
     )
   }

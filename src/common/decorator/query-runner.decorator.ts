@@ -9,7 +9,7 @@ export const QR = createParamDecorator(
   (_data: unknown, ctx: ExecutionContext) => {
     const req = ctx.switchToHttp().getRequest()
 
-    if (!req || !req.queryRunner) {
+    if (!req || !req.qr) {
       throw new InternalServerErrorException(
         'QueryRunner 객체를 찾을 수 없습니다',
       )
