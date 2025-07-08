@@ -1,9 +1,0 @@
-{
-  "version": "1",
-  "name": "넷플릭스",
-  "type": "collection",
-  "ignore": [
-    "node_modules",
-    ".git"
-  ]
-}

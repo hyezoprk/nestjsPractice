@@ -22,6 +22,8 @@
     "test:user:watch": "jest --watch --testPathPatterns=src/user --coverage --collectCoverageFrom=src/user/**"
   },
   "dependencies": {
+    "@ffmpeg-installer/ffmpeg": "^1.1.0",
+    "@nestjs/bullmq": "^11.0.2",
     "@nestjs/cache-manager": "^3.0.1",
     "@nestjs/common": "^11.1.3",
     "@nestjs/config": "^4.0.2",
@@ -30,14 +32,20 @@
     "@nestjs/mapped-types": "^2.1.0",
     "@nestjs/passport": "^11.0.5",
     "@nestjs/platform-express": "^11.1.3",
+    "@nestjs/platform-socket.io": "^11.1.3",
     "@nestjs/schedule": "^6.0.0",
     "@nestjs/serve-static": "^5.0.3",
     "@nestjs/swagger": "^11.2.0",
     "@nestjs/typeorm": "^11.0.0",
+    "@nestjs/websockets": "^11.1.3",
     "bcrypt": "^6.0.0",
+    "bullmq": "^5.56.2",
     "cache-manager": "^7.0.1",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.2",
+    "dotenv": "^17.0.1",
+    "ffprobe-static": "^3.1.0",
+    "fluent-ffmpeg": "^2.1.3",
     "joi": "^17.13.3",
     "multer": "^2.0.1",
     "nest-winston": "^1.10.2",
@@ -45,15 +53,19 @@
     "pg": "^8.16.3",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.2",
+    "socket.io": "^4.8.1",
     "typeorm": "^0.3.25",
     "winston": "^3.17.0"
   },
   "devDependencies": {
+    "@eslint/js": "^9.30.1",
     "@nestjs/cli": "^11.0.7",
     "@nestjs/schematics": "^11.0.5",
     "@nestjs/testing": "^11.1.3",
     "@types/bcrypt": "^5.0.2",
     "@types/express": "^5.0.3",
+    "@types/ffprobe-static": "^2.0.3",
+    "@types/fluent-ffmpeg": "^2.1.27",
     "@types/jest": "^30.0.0",
     "@types/multer": "^1.4.13",
     "@types/node": "^24.0.8",
@@ -72,7 +84,8 @@
     "ts-loader": "^9.5.2",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.35.1"
   },
   "jest": {
     "moduleFileExtensions": [
