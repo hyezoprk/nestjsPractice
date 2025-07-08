@@ -19,8 +19,8 @@ import { DefaultLogger } from './logger/default.logger'
           cb(
             null,
             randomUUID() +
-            `_${Date.now()}` +
-            `.${file.mimetype.split('/').at(-1)}`,
+              `_${Date.now()}` +
+              `.${file.mimetype.split('/').at(-1)}`,
           )
         },
       }),
@@ -30,7 +30,7 @@ import { DefaultLogger } from './logger/default.logger'
       fileFilter(_req, file, callback) {
         const allowedExt = ['jpeg', 'jpg', 'png', 'webp']
         const ext = file.mimetype.split('/').at(-1)
-        if (!ext) throw new BadRequestException("잘못된 파일입니다.")
+        if (!ext) throw new BadRequestException('잘못된 파일입니다.')
         if (!allowedExt.includes(ext)) {
           return callback(
             new BadRequestException(
@@ -47,4 +47,4 @@ import { DefaultLogger } from './logger/default.logger'
   providers: [CommonService, TasksService, DefaultLogger],
   exports: [CommonService],
 })
-export class CommonModule { }
+export class CommonModule {}

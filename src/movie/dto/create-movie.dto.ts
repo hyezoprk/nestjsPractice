@@ -14,7 +14,7 @@ export class CreateMovieDto {
   @IsString()
   @ApiProperty({
     description: '영화제목',
-    example: '해리 포터'
+    example: '해리 포터',
   })
   title: string
 
@@ -22,7 +22,7 @@ export class CreateMovieDto {
   @IsString()
   @ApiProperty({
     description: '영화 설명',
-    example: '마법 지팡이 도둑'
+    example: '마법 지팡이 도둑',
   })
   detail: string
 
@@ -30,7 +30,7 @@ export class CreateMovieDto {
   @IsNumber()
   @ApiProperty({
     description: '디렉터 ID',
-    example: 1
+    example: 1,
   })
   directorId: number
 
@@ -45,14 +45,14 @@ export class CreateMovieDto {
   @Type(() => Number)
   @ApiProperty({
     description: '장르 Ids',
-    example: [1, 2, 3]
+    example: [1, 2, 3],
   })
   genreIds: Genre[]
 
   @IsString()
   @ApiProperty({
     description: '영화 파일 이름',
-    example: 'aaa-bbb-ccc-ddd.png'
+    example: 'aaa-bbb-ccc-ddd.png',
   })
   movieFileName: string
 }

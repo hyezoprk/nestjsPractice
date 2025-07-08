@@ -7,7 +7,7 @@ export class CursorPaginationDto {
   @IsOptional()
   @ApiProperty({
     description: '페이지네이션 커서',
-    example: 'eyJ2YWx1ZXMiOnsiaWQiOjF9LCJvcmRlciI6WyJpZF9BU0MiXX0='
+    example: 'eyJ2YWx1ZXMiOnsiaWQiOjF9LCJvcmRlciI6WyJpZF9BU0MiXX0=',
   })
   cursor?: string
 
@@ -18,16 +18,16 @@ export class CursorPaginationDto {
   @IsOptional()
   @ApiProperty({
     description: '내림차 또는 오름차 정령',
-    example: ['id_DESC']
+    example: ['id_DESC'],
   })
-  @Transform(({ value: v }) => Array.isArray(v) ? v : [v])
+  @Transform(({ value: v }) => (Array.isArray(v) ? v : [v]))
   order: string[] = ['id_DESC']
 
   @IsInt()
   @IsOptional()
   @ApiProperty({
     description: '받으려는 데이터 숫자',
-    example: 1
+    example: 1,
   })
   take: number = 5
 }

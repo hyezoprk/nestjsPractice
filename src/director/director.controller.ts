@@ -21,7 +21,7 @@ import { ApiBearerAuth } from '@nestjs/swagger'
 @ApiBearerAuth()
 @UseInterceptors(ClassSerializerInterceptor)
 export class DirectorController {
-  constructor(private readonly directorService: DirectorService) { }
+  constructor(private readonly directorService: DirectorService) {}
 
   @Get()
   findAll() {

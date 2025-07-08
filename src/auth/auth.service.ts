@@ -1,5 +1,10 @@
 import { Cache, CACHE_MANAGER } from '@nestjs/cache-manager'
-import { BadRequestException, Inject, Injectable, InternalServerErrorException } from '@nestjs/common'
+import {
+  BadRequestException,
+  Inject,
+  Injectable,
+  InternalServerErrorException,
+} from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { JwtService, TokenExpiredError } from '@nestjs/jwt'
 import { InjectRepository } from '@nestjs/typeorm'
@@ -25,7 +30,7 @@ export class AuthService {
     private readonly jwtService: JwtService,
     @Inject(CACHE_MANAGER)
     private readonly cacheManager: Cache,
-  ) { }
+  ) {}
 
   parseToken(rawToken: string, tokenType: 'basic' | 'bearer') {
     const splitToken = rawToken.split(' ')
@@ -37,9 +42,13 @@ export class AuthService {
 
     const decoded = atob(token)
     const [email, password] =
-      decoded.split(':').length === 2 ? decoded.split(':') : [undefined, undefined]
+      decoded.split(':').length === 2
+        ? decoded.split(':')
+        : [undefined, undefined]
 
-    if (!email || !password) throw new BadRequestException("잘못된 로그인 정보입니다")
+    if (!email || !password)
+      throw new BadRequestException('잘못된 로그인 정보입니다')
+
     return { email, password }
   }
 
@@ -85,7 +94,9 @@ export class AuthService {
   async hashPassword(password: string) {
     const salt = this.configService.get<number>('HASH_ROUNDS')
     if (typeof salt !== 'number') {
-      throw new InternalServerErrorException('HASH_ROUNDS 환경변수가 설정되지 않았습니다.');
+      throw new InternalServerErrorException(
+        'HASH_ROUNDS 환경변수가 설정되지 않았습니다.',
+      )
     }
     return await hash(password, salt)
   }

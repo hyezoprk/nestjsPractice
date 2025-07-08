@@ -9,20 +9,19 @@ import { WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston'
 
 @Injectable()
 export class TasksService {
-
   constructor(
     @InjectRepository(Movie)
     private readonly movieRepository: Repository<Movie>,
     private readonly schedulerRegistry: SchedulerRegistry,
     @Inject(WINSTON_MODULE_NEST_PROVIDER)
     private readonly logger: LoggerService,
-  ) { }
+  ) {}
 
   // @Cron('*/5 * * * * *')
   async everySecond() {
     if (!this.logger.verbose) return
 
-    this.logger.verbose("5초마다 실행중!", TasksService.name)
+    this.logger.verbose('5초마다 실행중!', TasksService.name)
   }
 
   // @Cron('* * * * * *')

@@ -21,7 +21,7 @@ import { ApiBearerAuth } from '@nestjs/swagger'
 @ApiBearerAuth()
 @UseInterceptors(ClassSerializerInterceptor)
 export class GenreController {
-  constructor(private readonly genreService: GenreService) { }
+  constructor(private readonly genreService: GenreService) {}
 
   @Post()
   @RBAC(Role.ADMIN)

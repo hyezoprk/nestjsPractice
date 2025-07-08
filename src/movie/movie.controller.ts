@@ -30,7 +30,7 @@ import { ApiBearerAuth, ApiOperation, ApiResponse } from '@nestjs/swagger'
 @ApiBearerAuth()
 @UseInterceptors(ClassSerializerInterceptor)
 export class MovieController {
-  constructor(private readonly movieService: MovieService) { }
+  constructor(private readonly movieService: MovieService) {}
 
   @Get()
   @Public()
@@ -39,11 +39,11 @@ export class MovieController {
     unit: 'minute',
   })
   @ApiOperation({
-    description: 'Movie[]를 Pagination 하는 API'
+    description: 'Movie[]를 Pagination 하는 API',
   })
   @ApiResponse({
     status: 200,
-    description: '페이지네이션을 성공적으로 받았을 때'
+    description: '페이지네이션을 성공적으로 받았을 때',
   })
   getMovies(@Query() dto: GetMoviesDto, @UserId() userId?: number) {
     return this.movieService.getMovies(dto, userId)
@@ -72,7 +72,7 @@ export class MovieController {
     @UserId() userId: number,
     @QR() qr: QueryRunner,
   ) {
-    console.log("???")
+    console.log('???')
     return this.movieService.createMovie(createMovieDto, userId, qr)
   }
 

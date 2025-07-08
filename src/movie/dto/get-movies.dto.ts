@@ -7,7 +7,7 @@ export class GetMoviesDto extends CursorPaginationDto {
   @IsOptional()
   @ApiProperty({
     description: '영화의 제목',
-    example: "찰리"
+    example: '찰리',
   })
   title?: string
 }

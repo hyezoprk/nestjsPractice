@@ -9,14 +9,14 @@ import { catchError, Observable, tap } from 'rxjs'
 import { DataSource } from 'typeorm'
 
 @Injectable()
-export class TransactionInterceptor implements NestInterceptor {
+export class WsTransactionInterceptor implements NestInterceptor {
   constructor(private readonly dataSource: DataSource) {}
 
   async intercept(
     context: ExecutionContext,
     next: CallHandler<any>,
   ): Promise<Observable<any>> {
-    const client = context.switchToHttp().getRequest()
+    const client = context.switchToWs().getClient()
     const qr = this.dataSource.createQueryRunner()
 
     await qr.connect()

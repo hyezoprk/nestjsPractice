@@ -9,13 +9,12 @@ interface Cursor {
 }
 
 export class CommonService {
-  constructor() { }
+  constructor() {}
 
   async applyCursorPaginationParamsToQb<T extends ObjectLiteral>(
     qb: SelectQueryBuilder<T>,
     dto: CursorPaginationDto,
   ) {
-    // eslint-disable-next-line prefer-const
     let { cursor, order, take } = dto
 
     if (cursor) {

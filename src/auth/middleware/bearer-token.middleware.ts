@@ -18,7 +18,7 @@ export class BearerTokenMiddleware implements NestMiddleware {
     private readonly authService: AuthService,
     @Inject(CACHE_MANAGER)
     private readonly cacheManager: Cache,
-  ) { }
+  ) {}
 
   async use(
     req: RequestWithUser & { accessToken: string },
@@ -41,7 +41,7 @@ export class BearerTokenMiddleware implements NestMiddleware {
       return next()
     } else {
       const payload = await this.authService.verifyToken(token)
-      if (!payload) throw new UnauthorizedException("잘못된 토큰입니다")
+      if (!payload) throw new UnauthorizedException('잘못된 토큰입니다')
 
       const accessToken = await this.authService.issueToken(payload, 'access')
 

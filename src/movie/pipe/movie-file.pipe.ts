@@ -10,10 +10,11 @@ import { join } from 'path'
 
 @Injectable()
 export class MovieFilePipe
-  implements PipeTransform<Express.Multer.File, Promise<Express.Multer.File>> {
+  implements PipeTransform<Express.Multer.File, Promise<Express.Multer.File>>
+{
   constructor(
     private readonly options: { maxSize: number; allowedExt: string[] },
-  ) { }
+  ) {}
 
   async transform(
     file: Express.Multer.File,
@@ -23,7 +24,7 @@ export class MovieFilePipe
 
     const byteSize = this.options.maxSize * 1024 * 1024
     const ext = file.mimetype.split('/').at(-1)
-    if (!ext) throw new BadRequestException("잘못된 파일입니다.")
+    if (!ext) throw new BadRequestException('잘못된 파일입니다.')
 
     if (file.size > byteSize) {
       throw new BadRequestException(

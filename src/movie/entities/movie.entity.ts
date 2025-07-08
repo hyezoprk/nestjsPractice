@@ -42,7 +42,7 @@ export class Movie extends BaseTable {
   genres: Genre[]
 
   @Column({
-    type: "text",
+    type: 'text',
     nullable: true,
     default: null,
   })

@@ -1,6 +1,8 @@
 import { ConfigService } from '@nestjs/config'
 import { TypeOrmModuleAsyncOptions } from '@nestjs/typeorm'
 import * as Joi from 'joi'
+import { ChatRoom } from 'src/chat/entities/chat-room.entity'
+import { Chat } from 'src/chat/entities/chat.entity'
 import { ENV } from 'src/common/const/env.const'
 import { Director } from 'src/director/entities/director.entity'
 import { Genre } from 'src/genre/entities/genre.entity'
@@ -34,11 +36,23 @@ export const databaseEnvConfig: TypeOrmModuleAsyncOptions = {
     password: configService.get<string>(ENV.PASSWORD),
     database: configService.get<string>(ENV.DATABASE),
     // TODO: 엔티티 추가될 때마다 잊지 않기
-    entities: [Movie, MovieDetail, Director, Genre, User, MovieUserLike],
+    entities: [
+      Movie,
+      MovieDetail,
+      Director,
+      Genre,
+      User,
+      MovieUserLike,
+      Chat,
+      ChatRoom,
+    ],
     // TODO: 프로덕션에서 사용하는 경우 false로 반드시 변경
-    synchronize: true,
-    ssl: {
-      rejectUnauthorized: false
-    }
+    synchronize:
+      configService.get<string>(ENV.ENV) === 'production' ? false : true,
+    ...(configService.get<string>(ENV.ENV) === 'production' && {
+      ssl: {
+        rejectUnauthorized: false,
+      },
+    }),
   }),
 }

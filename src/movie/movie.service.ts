@@ -39,7 +39,7 @@ export class MovieService {
     private readonly commonService: CommonService,
     @Inject(CACHE_MANAGER)
     private readonly cacheManager: Cache,
-  ) { }
+  ) {}
 
   async createMovie(
     createMovieDto: CreateMovieDto,
@@ -133,7 +133,6 @@ export class MovieService {
     const { nextCursor } =
       await this.commonService.applyCursorPaginationParamsToQb(qb, dto)
 
-    // eslint-disable-next-line prefer-const
     let [data, total] = await qb.getManyAndCount()
 
     if (userId) {
@@ -142,12 +141,12 @@ export class MovieService {
         movieIds.length < 1
           ? []
           : await this.movieUserLikeRepository
-            .createQueryBuilder('mul')
-            .leftJoinAndSelect('mul.user', 'user')
-            .leftJoinAndSelect('mul.movie', 'movie')
-            .where('movie.id IN(:...movieIds)', { movieIds })
-            .andWhere('user.id = :userId', { userId })
-            .getMany()
+              .createQueryBuilder('mul')
+              .leftJoinAndSelect('mul.user', 'user')
+              .leftJoinAndSelect('mul.movie', 'movie')
+              .where('movie.id IN(:...movieIds)', { movieIds })
+              .andWhere('user.id = :userId', { userId })
+              .getMany()
 
       const likedMovieMap: Record<string, boolean> = likedMovies.reduce(
         (acc, each) => ({

@@ -1,4 +1,9 @@
-import { BadRequestException, Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common'
+import {
+  BadRequestException,
+  Injectable,
+  InternalServerErrorException,
+  NotFoundException,
+} from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
 import { UpdateUserDto } from './dto/update-user.dto'
@@ -13,8 +18,8 @@ export class UserService {
   constructor(
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
-    private readonly configService: ConfigService
-  ) { }
+    private readonly configService: ConfigService,
+  ) {}
 
   async findAll() {
     return await this.userRepository.find()
@@ -36,13 +41,16 @@ export class UserService {
 
     const salt = this.configService.get<number>(ENV.HASH_ROUNDS)
     if (typeof salt !== 'number')
-      throw new InternalServerErrorException("Hash rounds를 확인할 수 없습니다.")
+      throw new InternalServerErrorException(
+        'Hash rounds를 확인할 수 없습니다.',
+      )
 
     const hashedPassword = await hash(password, salt)
-    const newUser = await this.userRepository.save({
+    const userObj = this.userRepository.create({
       email,
       password: hashedPassword,
     })
+    const newUser = await this.userRepository.save(userObj)
 
     return newUser
   }

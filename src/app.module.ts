@@ -19,6 +19,7 @@ import { UserModule } from './user/user.module'
 import { CacheModule } from '@nestjs/cache-manager'
 import { ScheduleModule } from '@nestjs/schedule'
 import { WinstonModule } from 'nest-winston'
+import { ChatModule } from './chat/chat.module'
 import * as winston from 'winston'
 
 @Module({
@@ -43,9 +44,10 @@ import * as winston from 'winston'
             }),
             winston.format.timestamp(),
             winston.format.printf(
-              info => `${info.timestamp} [${info.context}] ${info.level} ${info.message}`
-            )
-          )
+              (info) =>
+                `${info.timestamp} [${info.context}] ${info.level} ${info.message}`,
+            ),
+          ),
         }),
         new winston.transports.File({
           dirname: join(process.cwd(), 'logs'),
@@ -53,10 +55,11 @@ import * as winston from 'winston'
           format: winston.format.combine(
             winston.format.timestamp(),
             winston.format.printf(
-              info => `${info.timestamp} [${info.context}] ${info.level} ${info.message}`
-            )
-          )
-        })
+              (info) =>
+                `${info.timestamp} [${info.context}] ${info.level} ${info.message}`,
+            ),
+          ),
+        }),
       ],
     }),
     MovieModule,
@@ -65,6 +68,7 @@ import * as winston from 'winston'
     AuthModule,
     UserModule,
     CacheModule.register({ ttl: 0, isGlobal: true }),
+    ChatModule,
   ],
   providers,
 })

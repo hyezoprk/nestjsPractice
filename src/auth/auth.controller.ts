@@ -19,7 +19,7 @@ import { Authorization } from './decorator/auth.decorator'
 @ApiBearerAuth()
 @UseInterceptors(ClassSerializerInterceptor)
 export class AuthController {
-  constructor(private readonly authService: AuthService) { }
+  constructor(private readonly authService: AuthService) {}
 
   @Post('register')
   @Public()
